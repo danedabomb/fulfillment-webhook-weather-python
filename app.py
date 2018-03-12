@@ -49,23 +49,22 @@ def webhook():
     return r
 
 def processRequest(req):
-    if req.get("result").get("action") == "yahooWeatherForecast":
+    if req.get("result").get("action")=="yahooWeatherForecast":
         baseurl = "https://query.yahooapis.com/v1/public/yql?"
         yql_query = makeYqlQuery(req)
         if yql_query is None:
-            return {}
+           return {}
         yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json"
         result = urlopen(yql_url).read()
         data = json.loads(result)
         res = makeWebhookResult(data)
-    elif req.get("result").get("action") == "welcome":
-        data = getWelcome(req)
+    elif req.get("result").get("action")=="welcome":
+        data = "Hello there. I'm StockBot!"
         res = makeWebhookForWelcome(data)
     else:
-        return {}    
-    
+        return {}
+ 
     return res
-
 
 def makeYqlQuery(req):
     result = req.get("result")
@@ -73,22 +72,18 @@ def makeYqlQuery(req):
     city = parameters.get("geo-city")
     if city is None:
         return None
+
     return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
-def getWelcome(req):
-    response = "Hi! I am here to help predict financial markets. My predictions are not 100% accurate!"
-    return response
-
 def makeWebhookForWelcome(data):
-    speechText = data
-    displayText = data
+    speech = data
         return {
-        "speech": speechText,
-        "displayText": displayText,
+        "speech": speech,
+        "displayText": speech,
         "source": "apiai-weather-webhook-sample"
     }
 
-def makeWebhookResult(data):    
+def makeWebhookResult(data):
     query = data.get('query')
     if query is None:
         return {}
@@ -100,24 +95,30 @@ def makeWebhookResult(data):
     channel = result.get('channel')
     if channel is None:
         return {}
-        item = channel.get('item')
-        location = channel.get('location')
-        units = channel.get('units')
+
+    item = channel.get('item')
+    location = channel.get('location')
+    units = channel.get('units')
     if (location is None) or (item is None) or (units is None):
         return {}
-        condition = item.get('condition')
+
+    condition = item.get('condition')
     if condition is None:
-            return {}
-        
+        return {}
+
+    # print(json.dumps(item, indent=4))
+
     speech = "Today the weather in " + location.get('city') + ": " + condition.get('text') + \
              ", And the temperature is " + condition.get('temp') + " " + units.get('temperature')
-        
+
     print("Response:")
     print(speech)
 
     return {
         "speech": speech,
         "displayText": speech,
+        # "data": data,
+        # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
 
