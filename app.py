@@ -17,10 +17,6 @@
 #from alpha_vantage.timeseries import TimeSeries
 #from pprint import pprint
 
-import requests
-from pandas.io.common import urlencode
-from pandas.tseries.frequencies import to_offset
-
 from __future__ import print_function
 from future.standard_library import install_aliases
 install_aliases()
