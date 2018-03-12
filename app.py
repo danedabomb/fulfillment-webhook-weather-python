@@ -83,9 +83,7 @@ def getWelcome(req):
     return result
 
 def makeWebhookResult(data):
-    action = req.get("result").get("action")
-
-  if action == "yahooWeatherForecast":
+  if req.get("result").get("action") == "yahooWeatherForecast":
     query = data.get('query')
     if query is None:
         return {}
@@ -106,7 +104,7 @@ def makeWebhookResult(data):
     # print(json.dumps(item, indent=4))
     speech = "Today the weather in " + location.get('city') + ": " + condition.get('text') + \
              ", And the temperature is " + condition.get('temp') + " " + units.get('temperature')
-  elif action == "welcome":
+  elif req.get("result").get("action") == "welcome":
     speech = str(data)
   else:
     speech = str(data)
