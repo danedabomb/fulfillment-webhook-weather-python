@@ -82,16 +82,19 @@ def makeYqlQuery(req):
 def makeWebhookResult(data):
     action = req.get("result").get("action")
         
+    query = data.get('query')
+    if query is None:
+        return {}
+
+    result = query.get('results')
+    if result is None:
+        return {}
+
+    channel = result.get('channel')
+    if channel is None:
+        return {}
+    
     if action == "yahooWeatherForecast":
-        query = data.get('query')
-        if query is None:
-            return {}
-        result = query.get('results')
-        if result is None:
-            return {}
-        channel = result.get('channel')
-        if channel is None:
-            return {}
         item = channel.get('item')
         location = channel.get('location')
         units = channel.get('units')
