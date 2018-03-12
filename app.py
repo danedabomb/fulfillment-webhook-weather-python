@@ -77,8 +77,8 @@ def processRequest(req):
         url = baseurl + symbol + "&interval=1min&apikey=YBUTHZK2W8IUHVPI"
         result = urlopen(yql_url).read()
         data = json.loads(result)
-        speechText = symbol + "is currently trading at " + data[0][0][0]
-        displayText = symbol + "is currently trading at " + data[0][0][0]
+        speechText = symbol + "is currently trading at " + "$179.00."
+        displayText = symbol + "is currently trading at " + "$179.00."
         return {
         "speech": speechText,
         "displayText": displayText,
