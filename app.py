@@ -14,8 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from alpha_vantage.timeseries import TimeSeries
-from pprint import pprint
+#from alpha_vantage.timeseries import TimeSeries
+#from pprint import pprint
 from __future__ import print_function
 from future.standard_library import install_aliases
 install_aliases()
