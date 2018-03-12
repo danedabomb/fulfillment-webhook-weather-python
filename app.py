@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from alpha_vantage.timeseries import TimeSeries
+from pprint import pprint
 from __future__ import print_function
 from future.standard_library import install_aliases
 install_aliases()
@@ -60,6 +62,21 @@ def processRequest(req):
         res = makeWebhookResult(data)
     elif req.get("result").get("action")=="welcome":
         speechText = "Hello there, I'm StockBot!"
+        displayText = speechText
+        return {
+        "speech": speechText,
+        "displayText": displayText,
+        "source": "apiai-weather-webhook-sample"
+    }
+    elif req.get("result").get("action")=="getQuote":
+        result = req.get("result")
+        parameters = result.get("parameters")
+        symbol = parameters.get("stock_symbol")
+        baseurl = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="
+        url = baseurl + symbol + "&interval=1min&apikey=YBUTHZK2W8IUHVPI"
+        result = urlopen(yql_url).read()
+        data = json.loads(result)
+        speechText = symbol + "is currently trading at " + data[0][0][0]
         displayText = speechText
         return {
         "speech": speechText,
