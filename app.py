@@ -77,7 +77,7 @@ def processRequest(req):
         result = urlopen(yql_url).read()
         data = json.loads(result)
         speechText = symbol + "is currently trading at " + data[0][0][0]
-        displayText = speechText
+        displayText = symbol + "is currently trading at " + data[0][0][0]
         return {
         "speech": speechText,
         "displayText": displayText,
