@@ -59,7 +59,9 @@ def processRequest(req):
         data = json.loads(result)
         res = makeWebhookResult(data)
     elif req.get("result").get("action")=="welcome":
-        data = "Hello there. I'm StockBot!"
+        baseurl = "http://api.icndb.com/jokes/random"
+        result = urlopen(baseurl).read()
+        data = json.loads(result)
         res = makeWebhookForWelcome(data)
     else:
         return {}
@@ -76,7 +78,10 @@ def makeYqlQuery(req):
     return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
 def makeWebhookForWelcome(data):
-    speech = data
+    valueString = data.get('value')
+    joke = valueString.get('joke')
+    speechText = joke
+    displayText = joke
         return {
         "speech": speech,
         "displayText": speech,
