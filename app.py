@@ -68,21 +68,21 @@ def processRequest(req):
         "displayText": displayText,
         "source": "apiai-weather-webhook-sample"
     }
-    elif req.get("result").get("action")=="getQuote":
-        result = req.get("result")
-        parameters = result.get("parameters")
-        symbol = parameters.get("stock_symbol")
-        baseurl = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="
-        url = baseurl + symbol + "&interval=1min&apikey=YBUTHZK2W8IUHVPI"
-        result = urlopen(yql_url).read()
-        data = json.loads(result)
-        speechText = symbol + "is currently trading at " + data[0][0][0]
-        displayText = symbol + "is currently trading at " + data[0][0][0]
-        return {
-        "speech": speechText,
-        "displayText": displayText,
-        "source": "apiai-weather-webhook-sample"
-    }
+#    elif req.get("result").get("action")=="getQuote":
+#        result = req.get("result")
+#        parameters = result.get("parameters")
+#        symbol = parameters.get("stock_symbol")
+#        baseurl = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="
+#        url = baseurl + symbol + "&interval=1min&apikey=YBUTHZK2W8IUHVPI"
+#        result = urlopen(yql_url).read()
+#        data = json.loads(result)
+#        speechText = symbol + "is currently trading at " + data[0][0][0]
+#        displayText = symbol + "is currently trading at " + data[0][0][0]
+#        return {
+#        "speech": speechText,
+#        "displayText": displayText,
+#        "source": "apiai-weather-webhook-sample"
+#    }
     else:
         return {}
  
