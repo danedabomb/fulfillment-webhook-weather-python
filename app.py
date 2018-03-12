@@ -78,7 +78,7 @@ def makeYqlQuery(req):
     return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
 def getWelcome(req):
-    response = 'Hi! I am here to help predict financial markets. My predictions are not 100% accurate!'
+    response = "Hi! I am here to help predict financial markets. My predictions are not 100% accurate!"
     return response
 
 def makeWebhookResult(data):
@@ -87,6 +87,7 @@ def makeWebhookResult(data):
     source = ''
     if originalRequest1 != None:
         source = originalRequest1.get("source")
+        
     if req.get("result").get("action") == "yahooWeatherForecast":
         query = data.get('query')
         if query is None:
