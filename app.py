@@ -48,8 +48,9 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
-
 def processRequest(req):
+    result = req.get("result")
+    parameters = result.get("parameters")
     if req.get("result").get("action") == "yahooWeatherForecast":
         baseurl = "https://query.yahooapis.com/v1/public/yql?"
         yql_query = makeYqlQuery(req)
