@@ -58,13 +58,13 @@ def processRequest(req):
         result = urlopen(yql_url).read()
         data = json.loads(result)
         res = makeWebhookResult(data)
-        return res
- #   elif req.get("result").get("action") == "welcome":
- #       data = getWelcome(req)
- #       res = makeWebhookResult(data)
- #       return res
+    elif req.get("result").get("action") == "welcome":
+        data = getWelcome(req)
+        res = makeWebhookForWelcome(data)
     else:
         return {}    
+    
+    return res
 
 
 def makeYqlQuery(req):
@@ -75,13 +75,20 @@ def makeYqlQuery(req):
         return None
     return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
-#def getWelcome(req):
-#    response = "Hi! I am here to help predict financial markets. My predictions are not 100% accurate!"
-#    return response
+def getWelcome(req):
+    response = "Hi! I am here to help predict financial markets. My predictions are not 100% accurate!"
+    return response
 
-def makeWebhookResult(data):
-    action = req.get("result").get("action")
-        
+def makeWebhookForWelcome(data):
+    speechText = data
+    displayText = data
+        return {
+        "speech": speechText,
+        "displayText": displayText,
+        "source": "apiai-weather-webhook-sample"
+    }
+
+def makeWebhookResult(data):    
     query = data.get('query')
     if query is None:
         return {}
@@ -93,23 +100,17 @@ def makeWebhookResult(data):
     channel = result.get('channel')
     if channel is None:
         return {}
-    
-    if action == "yahooWeatherForecast":
         item = channel.get('item')
         location = channel.get('location')
         units = channel.get('units')
-        if (location is None) or (item is None) or (units is None):
-            return {}
+    if (location is None) or (item is None) or (units is None):
+        return {}
         condition = item.get('condition')
-        if condition is None:
+    if condition is None:
             return {}
-        # print(json.dumps(item, indent=4))
-        speech = "Today the weather in " + location.get('city') + ": " + condition.get('text') + \
+        
+    speech = "Today the weather in " + location.get('city') + ": " + condition.get('text') + \
              ", And the temperature is " + condition.get('temp') + " " + units.get('temperature')
-#    elif action == "welcome":
-#        speech = str(data)
-    else:
-        speech = str(data)
         
     print("Response:")
     print(speech)
