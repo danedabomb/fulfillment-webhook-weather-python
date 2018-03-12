@@ -60,9 +60,9 @@ def processRequest(req):
         data = json.loads(result)
         res = makeWebhookResult(data)
         return res
-    elif req.get("result").get("action") == "input.welcome":
+    elif req.get("result").get("action") == "welcome":
         result = getWelcome(req)
-        data = json.loads(result)
+        data = result
         res = makeWebhookResult(data)
         return res
     else:
@@ -79,8 +79,8 @@ def makeYqlQuery(req):
     return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
 def getWelcome(req):
-    response = 'Hi! I am here to help predict financial markets. My predictions are not 100% accurate!'
-    return response
+    result = 'Hi! I am here to help predict financial markets. My predictions are not 100% accurate!'
+    return result
 
 def makeWebhookResult(data):
   if action == "yahooWeatherForecast":
@@ -104,7 +104,7 @@ def makeWebhookResult(data):
     # print(json.dumps(item, indent=4))
     speech = "Today the weather in " + location.get('city') + ": " + condition.get('text') + \
              ", And the temperature is " + condition.get('temp') + " " + units.get('temperature')
-  elif action == "input.welcome":
+  elif action == "welcome":
     speech = str(data)
   else:
     speech = str(data)
