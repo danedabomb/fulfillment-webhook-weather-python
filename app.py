@@ -61,8 +61,7 @@ def processRequest(req):
         res = makeWebhookResult(data)
         return res
     elif req.get("result").get("action") == "welcome":
-        result = getWelcome(req)
-        data = result
+        data = getWelcome(req)
         res = makeWebhookResult(data)
         return res
     else:
@@ -75,12 +74,11 @@ def makeYqlQuery(req):
     city = parameters.get("geo-city")
     if city is None:
         return None
-
     return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
 def getWelcome(req):
-    result = 'Hi! I am here to help predict financial markets. My predictions are not 100% accurate!'
-    return result
+    response = 'Hi! I am here to help predict financial markets. My predictions are not 100% accurate!'
+    return response
 
 def makeWebhookResult(data):
   if req.get("result").get("action") == "yahooWeatherForecast":
