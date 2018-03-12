@@ -83,8 +83,8 @@ def makeWebhookForWelcome(data):
     speechText = joke
     displayText = joke
         return {
-        "speech": speech,
-        "displayText": speech,
+        "speech": speechText,
+        "displayText": displayText,
         "source": "apiai-weather-webhook-sample"
     }
 
