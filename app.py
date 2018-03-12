@@ -82,6 +82,11 @@ def getWelcome(req):
     return response
 
 def makeWebhookResult(data):
+    action = req.get("result").get("action")
+    originalRequest1 = req.get("originalRequest")
+    source = ''
+    if originalRequest1 != None:
+        source = originalRequest1.get("source")
     if req.get("result").get("action") == "yahooWeatherForecast":
         query = data.get('query')
         if query is None:
