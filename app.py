@@ -17,6 +17,7 @@
 #from alpha_vantage.timeseries import TimeSeries
 #from pprint import pprint
 
+from googlefinance import getQuotes
 from __future__ import print_function
 from future.standard_library import install_aliases
 install_aliases()
