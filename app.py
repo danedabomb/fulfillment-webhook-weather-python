@@ -73,8 +73,8 @@ def processRequest(req):
         result = req.get("result")
         parameters = result.get("parameters")
         symbol = parameters.get("stock_symbol")
-        baseurl = "https://www.alphavantage.co/query?function=MIDPOINT&symbol="
-        yql_url = baseurl + symbol + "&interval=1min&time_period=10&series_type=open&apikey=YBUTHZK2W8IUHVPI"
+        baseurl = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="
+        yql_url = baseurl + symbol + "&interval=1min&apikey=YBUTHZK2W8IUHVPI"
         result = urlopen(yql_url).read()
         data = json.loads(result)
         data2 = timeseries.open(data)
