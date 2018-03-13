@@ -17,6 +17,7 @@
 #from alpha_vantage.timeseries import TimeSeries
 #from pprint import pprint
 
+import pytz
 import datetime
 from datetime import timedelta
 from __future__ import print_function
@@ -77,9 +78,10 @@ def processRequest(req):
         baseurl = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="
         yql_url = baseurl + symbol + "&interval=1min&apikey=YBUTHZK2W8IUHVPI"
         result = urlopen(yql_url).read()
-        now = datetime.datetime.now()
+        tz = pytz.timezone('America/Denver')
+        now = datetime.datetime.now(tz)
         if now.hour > 15:
-            time = datetime.datetime.now()
+            time = datetime.datetime.now(tz)
             time2 = time.replace(hour=16, minute=00, second=00)
             time3 = str(time2)
             time4 = time3[:-7]
@@ -89,7 +91,7 @@ def processRequest(req):
             time3 = str(time2)
             time4 = time3[:-7]
         else:
-            time = datetime.datetime.now()
+            time = datetime.datetime.now(tz)
             time2 = time.replace(second=00)
             time3 = str(time2)
             time4 = time3[:-7]
