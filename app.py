@@ -31,7 +31,6 @@ import os
 from flask import Flask
 from flask import request
 from flask import make_response
-import pytz
 from datetime import datetime, timedelta
 
 # Flask app should start in global layout
@@ -77,10 +76,9 @@ def processRequest(req):
         baseurl = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="
         yql_url = baseurl + symbol + "&interval=1min&apikey=YBUTHZK2W8IUHVPI"
         result = urlopen(yql_url).read()
-        tz = pytz.timezone('America/Denver')
-        now = datetime.now(tz)
+        now = datetime.now()
         if now.hour > 15:
-            time = datetime.now(tz)
+            time = datetime.now()
             time2 = time.replace(hour=16, minute=00, second=00)
             time3 = str(time2)
             time4 = time3[:-7]
@@ -90,7 +88,7 @@ def processRequest(req):
             time3 = str(time2)
             time4 = time3[:-7]
         else:
-            time = datetime.now(tz)
+            time = datetime.now()
             time2 = time.replace(second=00)
             time3 = str(time2)
             time4 = time3[:-7]
