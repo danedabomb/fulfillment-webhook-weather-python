@@ -18,8 +18,7 @@
 #from pprint import pprint
 
 import pytz
-import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
 from __future__ import print_function
 from future.standard_library import install_aliases
 install_aliases()
@@ -79,19 +78,19 @@ def processRequest(req):
         yql_url = baseurl + symbol + "&interval=1min&apikey=YBUTHZK2W8IUHVPI"
         result = urlopen(yql_url).read()
         tz = pytz.timezone('America/Denver')
-        now = datetime.datetime.now(tz)
+        now = datetime.now(tz)
         if now.hour > 15:
-            time = datetime.datetime.now(tz)
+            time = datetime.now(tz)
             time2 = time.replace(hour=16, minute=00, second=00)
             time3 = str(time2)
             time4 = time3[:-7]
         elif now.hour < 10:
-            time = datetime.datetime.today() - timedelta(days=1)
+            time = datetime.today() - timedelta(days=1)
             time2 = time.replace(hour=16, minute=00, second=00)
             time3 = str(time2)
             time4 = time3[:-7]
         else:
-            time = datetime.datetime.now(tz)
+            time = datetime.now(tz)
             time2 = time.replace(second=00)
             time3 = str(time2)
             time4 = time3[:-7]
