@@ -77,19 +77,20 @@ def processRequest(req):
         yql_url = baseurl + symbol + "&interval=1min&apikey=YBUTHZK2W8IUHVPI"
         result = urlopen(yql_url).read()
         now = datetime.now()
-        if now.hour > 15:
+        if now.hour > 13:
             time = datetime.now()
             time2 = time.replace(hour=16, minute=00, second=00)
             time3 = str(time2)
             time4 = time3[:-7]
-        elif now.hour < 10:
+        elif now.hour < 8:
             time = datetime.today() - timedelta(days=1)
             time2 = time.replace(hour=16, minute=00, second=00)
             time3 = str(time2)
             time4 = time3[:-7]
         else:
             time = datetime.now()
-            time2 = time.replace(second=00)
+            timex = datetime.today() + timedelta(hours=2)
+            time2 = timex.replace(second=00)
             time3 = str(time2)
             time4 = time3[:-7]
         data = json.loads(result)
