@@ -17,6 +17,7 @@
 #from alpha_vantage.timeseries import TimeSeries
 #from pprint import pprint
 
+
 import datetime
 from datetime import timedelta
 from __future__ import print_function
