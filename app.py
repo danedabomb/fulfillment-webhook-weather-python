@@ -83,7 +83,7 @@ def processRequest(req):
             time3 = str(time2)
             time4 = time3[:-7]
         elif now.hour < 10:
-            time = datetime.date.today() - timedelta(days=1)
+            time = datetime.today() - timedelta(days=1)
             time2 = time.replace(hour=16, minute=00, second=00)
             time3 = str(time2)
             time4 = time3[:-7]
