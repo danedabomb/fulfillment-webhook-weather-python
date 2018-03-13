@@ -77,8 +77,8 @@ def processRequest(req):
         yql_url = baseurl + symbol + "&interval=1min&apikey=YBUTHZK2W8IUHVPI"
         result = urlopen(yql_url).read()
         data = json.loads(result)
-        data2 = timeseries.open(data)
-        speech = symbol + " is currently trading at " + data2[1] + "."
+        data1= data['Time Series (1min)']['2018-03-12 16:00:00']['1. open']
+        speech = symbol + " is currently trading at " + data1 + "."
         return {
         "speech": speech,
         "displayText": speech,
