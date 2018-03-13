@@ -18,7 +18,7 @@
 #from pprint import pprint
 
 import datetime
-from datetime import timedelta
+#from datetime import timedelta
 from __future__ import print_function
 from future.standard_library import install_aliases
 install_aliases()
@@ -78,24 +78,24 @@ def processRequest(req):
         baseurl = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="
         yql_url = baseurl + symbol + "&interval=1min&apikey=YBUTHZK2W8IUHVPI"
         result = urlopen(yql_url).read()
-        now = datetime.datetime.now()
-            if now.hour > 15:
-                time = datetime.datetime.now()
-                time2 = time.replace(hour=16, minute=00, second=00)
-                time3 = str(time2)
-                time4 = time3[:-7]
-            elif now.hour < 10:
-                time = datetime.datetime.today() - timedelta(days=1)
-                time2 = time.replace(hour=16, minute=00, second=00)
-                time3 = str(time2)
-                time4 = time3[:-7]
-            else:
-                time = datetime.datetime.now()
-                time2 = time.replace(second=00)
-                time3 = str(time2)
-                time4 = time3[:-7]
-        data = json.loads(result)
-        data1= data['Time Series (1min)'][time4]['1. open']
+#        now = datetime.datetime.now()
+#            if now.hour > 15:
+#                time = datetime.datetime.now()
+#                time2 = time.replace(hour=16, minute=00, second=00)
+#                time3 = str(time2)
+#                time4 = time3[:-7]
+#            elif now.hour < 10:
+#                time = datetime.datetime.today() - timedelta(days=1)
+#                time2 = time.replace(hour=16, minute=00, second=00)
+#                time3 = str(time2)
+#                time4 = time3[:-7]
+#            else:
+#                time = datetime.datetime.now()
+#                time2 = time.replace(second=00)
+#                time3 = str(time2)
+#                time4 = time3[:-7]
+#        data = json.loads(result)
+        data1= data['Time Series (1min)']['2018-03-12 16:00:00']['1. open']
         speech = symbol + " is currently trading at " + data1 + "."
         return {
         "speech": speech,
