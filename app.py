@@ -17,8 +17,6 @@
 #from alpha_vantage.timeseries import TimeSeries
 #from pprint import pprint
 
-import pytz
-from datetime import datetime, timedelta
 from __future__ import print_function
 from future.standard_library import install_aliases
 install_aliases()
@@ -33,6 +31,8 @@ import os
 from flask import Flask
 from flask import request
 from flask import make_response
+import pytz
+from datetime import datetime, timedelta
 
 # Flask app should start in global layout
 app = Flask(__name__)
