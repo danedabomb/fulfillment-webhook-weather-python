@@ -94,7 +94,7 @@ def processRequest(req):
 #                time2 = time.replace(second=00)
 #                time3 = str(time2)
 #                time4 = time3[:-7]
-#        data = json.loads(result)
+        data = json.loads(result)
         data1= data['Time Series (1min)']['2018-03-12 16:00:00']['1. open']
         speech = symbol + " is currently trading at " + data1 + "."
         return {
