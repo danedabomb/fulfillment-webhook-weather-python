@@ -73,15 +73,14 @@ def processRequest(req):
         result = req.get("result")
         parameters = result.get("parameters")
         symbol = parameters.get("stock_symbol")
-        baseurl = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="
-        url = baseurl + symbol + "&interval=1min&apikey=YBUTHZK2W8IUHVPI"
+        baseurl = "https://www.alphavantage.co/query?function=MIDPOINT&symbol="
+        yql_url = baseurl + symbol + "&interval=1min&time_period=10&series_type=open&apikey=YBUTHZK2W8IUHVPI"
         result = urlopen(yql_url).read()
         data = json.loads(result)
-        speechText = symbol + " is currently trading at " + data
-        displayText = symbol + " is currently trading at " + data
+        speech = symbol + " is currently trading at " + data + "."
         return {
-        "speech": speechText,
-        "displayText": displayText,
+        "speech": speech,
+        "displayText": speech,
         "source": "apiai-weather-webhook-sample"
     }
     else:
