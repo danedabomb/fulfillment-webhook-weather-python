@@ -17,7 +17,7 @@
 #from alpha_vantage.timeseries import TimeSeries
 #from pprint import pprint
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from __future__ import print_function
 from future.standard_library import install_aliases
 install_aliases()
