@@ -77,7 +77,6 @@ def processRequest(req):
         baseurl = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="
         yql_url = baseurl + symbol + "&interval=1min&apikey=YBUTHZK2W8IUHVPI"
         result = urlopen(yql_url).read()
-        time = str(datetime.now())
         now = datetime.now()
             if now.hour > 15:
                 time = datetime.now()
