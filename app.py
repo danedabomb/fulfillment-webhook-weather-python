@@ -17,8 +17,8 @@
 #from alpha_vantage.timeseries import TimeSeries
 #from pprint import pprint
 
-import datetime
-from datetime import timedelta
+#import datetime
+#from datetime import timedelta
 from __future__ import print_function
 from future.standard_library import install_aliases
 install_aliases()
@@ -37,22 +37,22 @@ from flask import make_response
 # Flask app should start in global layout
 app = Flask(__name__)
 
-now = datetime.datetime.now()
-if now.hour > 15:
-    time = datetime.datetime.now()
-    time2 = time.replace(hour=16, minute=00, second=00)
-    time3 = str(time2)
-    time4 = time3[:-7]
-elif now.hour < 10:
-    time = datetime.datetime.today() - timedelta(days=1)
-    time2 = time.replace(hour=16, minute=00, second=00)
-    time3 = str(time2)
-    time4 = time3[:-7]
-else:
-    time = datetime.datetime.now()
-    time2 = time.replace(second=00)
-    time3 = str(time2)
-    time4 = time3[:-7]
+#now = datetime.datetime.now()
+#if now.hour > 15:
+#    time = datetime.datetime.now()
+#    time2 = time.replace(hour=16, minute=00, second=00)
+#    time3 = str(time2)
+#    time4 = time3[:-7]
+#elif now.hour < 10:
+#    time = datetime.datetime.today() - timedelta(days=1)
+#    time2 = time.replace(hour=16, minute=00, second=00)
+#    time3 = str(time2)
+#    time4 = time3[:-7]
+#else:
+#    time = datetime.datetime.now()
+#    time2 = time.replace(second=00)
+#    time3 = str(time2)
+#    time4 = time3[:-7]
 
 
 @app.route('/webhook', methods=['POST'])
