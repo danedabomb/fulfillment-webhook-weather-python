@@ -55,7 +55,7 @@ def processRequest(req):
     elif req.get("result").get("action")=="getQuote":
         result = req.get("result")
         parameters = result.get("parameters")
-        symbol = parameters.get("stock_symbol")
+        symbol = parameters.get("symbol")
         baseurl = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="
         yql_url = baseurl + symbol + "&interval=1min&apikey=YBUTHZK2W8IUHVPI"
         result = urlopen(yql_url).read()
