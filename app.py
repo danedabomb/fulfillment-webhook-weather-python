@@ -106,13 +106,14 @@ def processRequest(req):
                          }
                     }
                 }
-            }
-    else:
+        }
         return {
         "speech": speech,
         "displayText": speech,
         "source": "apiai-weather-webhook-sample"
     }
+    else:
+        return {}
  
     return res
 
