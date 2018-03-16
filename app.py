@@ -82,11 +82,11 @@ def processRequest(req):
         chart_speech = "Chart for " + symbol
         chart_url = "https://www.etoro.com/markets/" + symbol + "/chart"
 
-            return {
-            "speech": speech,
-            "displayText": speech,
-            "source": "apiai-weather-webhook-sample"
-            }
+    return {
+        "speech": speech,
+        "displayText": speech,
+        "source": "apiai-weather-webhook-sample"
+    }
     else:
         return {}
  
