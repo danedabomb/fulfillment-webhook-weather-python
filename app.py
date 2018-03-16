@@ -87,7 +87,7 @@ def processRequest(req):
                 "displayText": speech,
                 "source": "apiai-wallstreetbot-webhook", 
                 "data": {
-                    “message": {
+                    “facebook": {
                       "attachment": {
                         "type": "template",
                         "payload": {
@@ -99,8 +99,6 @@ def processRequest(req):
                                     "url":chart_url,
                                     "title":chart_speech,
                                     "webview_height_ratio": “compact”,
-				                    “messenger_extensions”: “true”,
-				                    “fallback_url”:”https://www.facebook.com/"
                                   },
                                 ]
                             }
