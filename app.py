@@ -81,6 +81,7 @@ def processRequest(req):
         speech = symbol + " is currently trading at " + data1 + "."
 #        chart_speech = "Chart for " + symbol
 #        chart_url = "https://www.etoro.com/markets/" + symbol + "/chart"
+
         if source == 'facebook':
             return {
                 "speech": speech,
@@ -106,14 +107,12 @@ def processRequest(req):
                     }
                 }
             }
-        
+    else:
         return {
         "speech": speech,
         "displayText": speech,
         "source": "apiai-weather-webhook-sample"
     }
-    else:
-        return {}
  
     return res
 
