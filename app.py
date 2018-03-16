@@ -81,10 +81,11 @@ def processRequest(req):
         speech = symbol + " is currently trading at " + data1 + "."
         chart_speech = "Chart for " + symbol
         chart_url = "https://www.etoro.com/markets/" + symbol + "/chart"
+        if source == 'facebook':
             return {
                 "speech": speech,
                 "displayText": speech,
-                "source": "apiai-weather-webhook-sample", 
+                "source": "apiai-wallstreetbot-webhook", 
                 "data": {
                     "facebook": {
                       "attachment": {
@@ -98,18 +99,19 @@ def processRequest(req):
                                     "url":chart_url,
                                     "title":chart_speech,
                                     "webview_height_ratio": "compact"
-                                  }
+                                  },
                                 ]
                             }
                          }
                     }
                 }
             }
-#                return {
-#        "speech": speech,
-#        "displayText": speech,
-#        "source": "apiai-weather-webhook-sample"
-#    }
+
+            return {
+            "speech": speech,
+            "displayText": speech,
+            "source": "apiai-weather-webhook-sample"
+            }
     else:
         return {}
  
