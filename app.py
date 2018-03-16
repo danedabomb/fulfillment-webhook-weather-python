@@ -92,7 +92,7 @@ def processRequest(req):
                         "type": "template",
                         "payload": {
                                 "template_type":"button",
-                                "text":speech,
+                                "text":chart_speech,
                                 "buttons":[
                                   {
                                     "type":"web_url",
