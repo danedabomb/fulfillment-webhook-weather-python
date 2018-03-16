@@ -79,8 +79,35 @@ def processRequest(req):
         data = json.loads(result)
         data1= data['Time Series (1min)'][time4]['1. open']
         speech = symbol + " is currently trading at " + data1 + "."
-#        chart_speech = "Chart for " + symbol
-#        chart_url = "https://www.etoro.com/markets/" + symbol + "/chart"
+       chart_speech = "Chart for " + symbol
+       chart_url = "https://www.etoro.com/markets/" + symbol + "/chart"
+        if source == 'facebook':
+            return {
+                "speech": speech,
+                "displayText": speech,
+                "source": "apiai-wallstreetbot-webhook", 
+                "data": {
+                    “message": {
+                      "attachment": {
+                        "type": "template",
+                        "payload": {
+                                "template_type":"button",
+                                "text":speech,
+                                "buttons":[
+                                  {
+                                    "type":"web_url",
+                                    "url":chart_url,
+                                    "title":chart_speech,
+                                    "webview_height_ratio": “compact”,
+				                    “messenger_extensions”: “true”,
+				                    “fallback_url”:”https://www.facebook.com/"
+                                  },
+                                ]
+                            }
+                         }
+                    }
+                }
+            }
         return {
         "speech": speech,
         "displayText": speech,
