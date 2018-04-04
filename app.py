@@ -113,6 +113,67 @@ def processRequest(req):
     }
     else:
         return {}
+    elif req.get("result").get("action")=="trackVolume":
+        result = req.get("result")
+        parameters = result.get("parameters")
+        symbol = parameters.get("symbol")
+        baseurl = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="
+        yql_url = baseurl + symbol + "&interval=1min&apikey=YBUTHZK2W8IUHVPI"
+        result = urlopen(yql_url).read()
+        now = datetime.now()
+        if now.hour > 13:
+            time = datetime.now()
+            time2 = time.replace(hour=16, minute=00, second=00)
+            time3 = str(time2)
+            time4 = time3[:-7]
+        elif now.hour < 8:
+            time = datetime.today() - timedelta(days=1)
+            time2 = time.replace(hour=16, minute=00, second=00)
+            time3 = str(time2)
+            time4 = time3[:-7]
+        else:
+            time = datetime.now()
+            timex = datetime.today() + timedelta(hours=2)
+            time2 = timex.replace(second=00)
+            time3 = str(time2)
+            time4 = time3[:-7]
+        data = json.loads(result)
+        data1= data['Time Series (1min)'][time4]['5. volume']
+        speech = data1 +  " shares of " + symbol + " have been traded in the last minute."
+#        chart_speech = "Chart for " + symbol
+#        chart_url = "https://www.etoro.com/markets/" + symbol + "/chart"
+#        if source == 'facebook':
+#            return {
+#                "speech": speech,
+#                "displayText": speech,
+#                "source": "apiai-wallstreetbot-webhook", 
+#                "data": {
+#                    “facebook": {
+#                      "attachment": {
+#                        "type": "template",
+#                        "payload": {
+#                                "template_type":"button",
+#                                "text":speech,
+#                                "buttons":[
+#                                  {
+#                                    "type":"web_url",
+#                                    "url":chart_url,
+#                                    "title":chart_speech,
+#                                    "webview_height_ratio": “compact”,
+#                                  },
+#                                ]
+#                            }
+#                         }
+#                    }
+#                }
+#            }
+        return {
+        "speech": speech,
+        "displayText": speech,
+        "source": "apiai-weather-webhook-sample"
+    }
+    else:
+        return {}
  
     return res
 
