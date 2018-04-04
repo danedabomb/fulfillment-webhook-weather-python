@@ -81,7 +81,7 @@ def processRequest(req):
         speech = symbol + " is currently trading at $" + data1 + "."
         chart_speech = "Chart for " + symbol
         chart_url = "https://www.etoro.com/markets/" + symbol + "/chart"
-        if source == 'facebook':
+        if source == 'agent':
             return {
                 "speech": speech,
                 "displayText": speech,
