@@ -107,11 +107,11 @@ def processRequest(req):
                 }
             }
         else:
-        return {
-        "speech": speech,
-        "displayText": speech,
-        "source": "apiai-weather-webhook-sample"
-    }
+            return {
+            "speech": speech,
+            "displayText": speech,
+            "source": "apiai-weather-webhook-sample"
+        }
     elif req.get("result").get("action")=="trackVolume":
         result = req.get("result")
         parameters = result.get("parameters")
