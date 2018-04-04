@@ -81,37 +81,11 @@ def processRequest(req):
         speech = symbol + " is currently trading at $" + data1 + "."
         chart_speech = "Chart for " + symbol
         chart_url = "https://www.etoro.com/markets/" + symbol + "/chart"
-        if platform == 'facebook':
-            return {
-                "speech": speech,
-                "displayText": speech,
-                "source": "apiai-weather-webhook-sample", 
-                "data": {
-                    "facebook": {
-                      "attachment": {
-                        "type": "template",
-                        "payload": {
-                                "template_type":"button",
-                                "text":speech,
-                                "buttons":[
-                                  {
-                                    "type":"web_url",
-                                    "url":chart_url,
-                                    "title":chart_speech,
-                                    "webview_height_ratio": "compact"
-                                  },
-                                ]
-                            }
-                         }
-                    }
-                }
-            }
-        else:
-            return {
-            "speech": speech,
-            "displayText": speech,
-            "source": "apiai-weather-webhook-sample"
-        }
+        return {
+        "speech": speech,
+        "displayText": speech,
+        "source": "apiai-weather-webhook-sample"
+    }
     elif req.get("result").get("action")=="trackVolume":
         result = req.get("result")
         parameters = result.get("parameters")
