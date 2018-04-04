@@ -111,8 +111,6 @@ def processRequest(req):
         "displayText": speech,
         "source": "apiai-weather-webhook-sample"
     }
-    else:
-        return {}
     elif req.get("result").get("action")=="trackVolume":
         result = req.get("result")
         parameters = result.get("parameters")
