@@ -16,6 +16,9 @@ from flask import request
 from flask import make_response
 from datetime import datetime, timedelta
 
+from google import google
+num_page = 3
+
 # Flask app should start in global layout
 app = Flask(__name__)
 
