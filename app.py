@@ -146,6 +146,19 @@ def processRequest(req):
         "displayText": speech,
         "source": "apiai-weather-webhook-sample"
     }
+    elif req.get("result").get("action")=="stocknews":
+        result = req.get("result")
+        parameters = result.get("parameters")
+        symbol = parameters.get("symbol")
+        base = "Here's the lastest news articles for " + symbol + " as provided by TheStreet. Click the link to access your articles: "
+        url = "https://www.thestreet.com/quote/" + symbol + "/details/news.html"
+        speechText = base + url
+        displayText = speechText
+        return {
+        "speech": speechText,
+        "displayText": displayText,
+        "source": "apiai-weather-webhook-sample"
+    }
     else:
         return {}
  
